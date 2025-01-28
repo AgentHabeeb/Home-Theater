@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Movie</title>
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="watch-container">
+    <h1 id="movie-title"></h1>
+    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450">
+      <source id="video-source" src="" type="video/mp4" />
+      <p class="vjs-no-js">
+        To view this video, please enable JavaScript or use a browser that supports HTML5 video.
+      </p>
+    </video>
+    <button id="back-button">Back to Movie</button>
+  </div>
+
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

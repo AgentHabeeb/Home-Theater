@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Movie Collection</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Movie Collection</h1>
+
+    <!-- Search Bar -->
+    <div class="search-filter">
+      <input type="text" id="search-bar" placeholder="Search movies..." />
+      <select id="filter-genre">
+        <option value="">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Drama">Drama</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <!-- Add more genres as needed -->
+      </select>
+    </div>
+
+    <!-- Movie Grid -->
+    <div id="movie-list" class="movie-list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
