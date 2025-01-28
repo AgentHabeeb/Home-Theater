@@ -28,4 +28,3 @@ npm install
   "moviesDir": "D:/path/to/your/movies"
 }
 Replace "D:/path/to/your/movies" with the path to your movies directory.
-
