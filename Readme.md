@@ -21,6 +21,7 @@ Home Theater is a simple movie streaming application built with Node.js and Expr
 ```bash
 git clone https://github.com/yourusername/home-theater.git
 cd home-theater
+
 ## Install dependencies
 npm install
 ## Create a config.json file in the config directory with the following structure:
