@@ -26,10 +26,3 @@ cd home-theater
 ```bash
 npm install
 ```
-## Create a config.json file in the config directory with the following structure:
-```js
-{
-  "moviesDir": "D:/path/to/your/movies"
-}
-```
-Replace "D:/path/to/your/movies" with the path to your movies directory.

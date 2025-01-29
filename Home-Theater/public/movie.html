@@ -7,12 +7,21 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="movie-details" class="movie-details">
-    <img id="movie-poster" src="" alt="Movie Poster">
-    <h1 id="movie-title"></h1>
-    <p id="movie-info"></p>
-    <button id="play-button">Play</button>
-    <button id="back-button">Back to Main</button> <!-- New button -->
+  <div class="movie-container">
+    <!-- Poster on the left -->
+    <div class="poster-container">
+      <img id="movie-poster" src="" alt="Movie Poster">
+    </div>
+
+    <!-- Info on the right -->
+    <div class="info-container">
+      <h1 id="movie-title"></h1>
+      <p id="movie-info"></p>
+      <div class="button-container">
+        <button id="play-button">Play</button>
+        <button id="back-button">Back to Main</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
