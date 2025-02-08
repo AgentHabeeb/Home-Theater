@@ -1,12 +1,31 @@
 let allMovies = []; // Store all movies for filtering
+let watchedMovies = JSON.parse(localStorage.getItem('watchedMovies')) || []; // Load watched movies from localStorage
+let activeFilter = ''; // Track the active filter (e.g., genre or watched status)
 
 // Fetch movies from the backend
 async function fetchMovies() {
   const response = await fetch('/api/movies');
   const movies = await response.json();
   allMovies = movies; // Store all movies
-  displayMovies(movies); // Display all movies initially
-  updateMovieCounter(movies.length); // Update the movie counter
+  applyActiveFilter(); // Apply the active filter (defaults to showing all movies)
+  updateMovieCounter(allMovies.length); // Update the movie counter
+}
+
+// Apply the active filter and display movies
+function applyActiveFilter() {
+  let filteredMovies = allMovies;
+
+  if (activeFilter === 'watched') {
+    // Filter by watched movies
+    filteredMovies = allMovies.filter(movie => watchedMovies.includes(movie.id));
+  } else if (activeFilter) {
+    // Filter by genre
+    filteredMovies = allMovies.filter(movie =>
+      movie.metadata.genre && movie.metadata.genre.includes(activeFilter)
+    );
+  }
+
+  displayMovies(filteredMovies); // Display the filtered movies
 }
 
 // Display movies in the grid
@@ -31,6 +50,39 @@ function displayMovies(movies) {
     movieCard.appendChild(title);
     movieList.appendChild(movieCard);
 
+    // Add watched indicator
+    const watchedIndicator = document.createElement('div');
+    watchedIndicator.className = 'watched-indicator';
+
+    // Set initial text based on watched status
+    if (watchedMovies.includes(movie.id)) {
+      watchedIndicator.textContent = 'Watched';
+      watchedIndicator.style.opacity = 1; // Always visible for watched movies
+    } else {
+      watchedIndicator.textContent = 'Did you watch it?';
+      watchedIndicator.style.opacity = 0; // Hidden by default for unwatched movies
+    }
+
+    movieCard.appendChild(watchedIndicator);
+
+    // Show the indicator on hover for unwatched movies
+    if (!watchedMovies.includes(movie.id)) {
+      movieCard.addEventListener('mouseenter', () => {
+        watchedIndicator.style.opacity = 1; // Show on hover
+      });
+
+      movieCard.addEventListener('mouseleave', () => {
+        watchedIndicator.style.opacity = 0; // Hide when not hovering
+      });
+    }
+
+    // Toggle watched status when the indicator is clicked
+    watchedIndicator.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent the card click event from firing
+      toggleWatchedMovie(movie.id);
+      applyActiveFilter(); // Re-render the movie list with the current filter
+    });
+
     // Navigate to the movie landing page when clicked
     movieCard.addEventListener('click', () => {
       window.location.href = `/movie.html?id=${movie.id}`;
@@ -38,6 +90,16 @@ function displayMovies(movies) {
   });
 
   updateMovieCounter(movies.length); // Update the movie counter
+}
+
+// Toggle watched status of a movie
+function toggleWatchedMovie(movieId) {
+  if (watchedMovies.includes(movieId)) {
+    watchedMovies = watchedMovies.filter(id => id !== movieId); // Remove from watched list
+  } else {
+    watchedMovies.push(movieId); // Add to watched list
+  }
+  localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies)); // Save to localStorage
 }
 
 // Update the movie counter
@@ -50,15 +112,56 @@ function updateMovieCounter(count) {
 
 // Filter movies by genre
 function filterMoviesByGenre(genre) {
-  if (genre === '') {
-    displayMovies(allMovies); // Show all movies if no genre is selected
-  } else {
-    const filteredMovies = allMovies.filter(movie =>
-      movie.metadata.genre && movie.metadata.genre.includes(genre)
-    );
-    displayMovies(filteredMovies);
-  }
+  activeFilter = genre; // Set the active filter
+  applyActiveFilter(); // Apply the filter
 }
+
+// Filter movies by watched status
+function filterWatchedMovies() {
+  activeFilter = 'watched'; // Set the active filter
+  applyActiveFilter(); // Apply the filter
+}
+
+// Search functionality
+document.getElementById('search-bar')?.addEventListener('input', (e) => {
+  const searchTerm = e.target.value.toLowerCase();
+  const filteredMovies = allMovies.filter(movie =>
+    movie.title.toLowerCase().includes(searchTerm)
+  );
+  displayMovies(filteredMovies);
+});
+
+// Genre filter functionality
+document.getElementById('filter-genre')?.addEventListener('change', (e) => {
+  const genre = e.target.value;
+  filterMoviesByGenre(genre);
+});
+
+// Side panel functionality
+document.getElementById('all-movies')?.addEventListener('click', () => {
+  activeFilter = ''; // Clear the active filter
+  applyActiveFilter(); // Show all movies
+});
+
+document.getElementById('watched-movies')?.addEventListener('click', () => {
+  filterWatchedMovies(); // Show only watched movies
+});
+
+// Toggle side panel visibility
+document.getElementById('toggle-side-panel')?.addEventListener('click', () => {
+  const sidePanel = document.getElementById('side-panel');
+  const mainContent = document.querySelector('.main-content');
+  sidePanel.classList.toggle('visible');
+  mainContent.classList.toggle('shifted');
+});
+
+// Fetch movies when the page loads
+fetchMovies();
+
+
+// Movie Landing
+
+
 
 // Movie Landing Page: Fetch and display movie details
 async function fetchMovieDetails() {
