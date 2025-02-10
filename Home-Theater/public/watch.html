@@ -8,17 +8,22 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="video-backdrop"></div>
   <div class="watch-container">
     <h1 id="movie-title"></h1>
-    <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450">
-      <source id="video-source" src="" type="video/mp4" />
-      <p class="vjs-no-js">
-        To view this video, please enable JavaScript or use a browser that supports HTML5 video.
-      </p>
-    </video>
+    <div class="video-player-container">
+      <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="800" height="450">
+        <source id="video-source" src="" type="video/mp4" />
+        <p class="vjs-no-js">
+          To view this video, please enable JavaScript or use a browser that supports HTML5 video.
+        </p>
+      </video>
+      <div class="loading-spinner"></div>
+    </div>
     <button id="back-button">Back to Movie</button>
   </div>
 
+  <!-- Load Video.js before your script.js -->
   <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
   <script src="script.js"></script>
 </body>
