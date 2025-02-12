@@ -7,52 +7,55 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Toggle Button for Side Panel -->
-    <button id="toggle-side-panel" class="toggle-side-panel">☰</button>
-
-    <!-- Side Panel -->
-    <div class="side-panel" id="side-panel">
-      <div class="side-panel-item" id="all-movies">All Movies</div>
-      <div class="side-panel-item" id="watched-movies">Watched Movies</div>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">My Movie Collection</div>
+    <nav class="nav">
+      <a href="#" id="home-link" class="nav-link">Home</a>
+      <a href="#" id="watched-link" class="nav-link">Watched</a>
+    </nav>
+    <div class="search-filter">
+      <input type="text" id="search-bar" placeholder="Search movies..." />
+      <select id="filter-genre">
+        <option value="">All Genres</option>
+        <option value="Action">Action</option>
+        <option value="Drama">Drama</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Crime">Crime</option>
+        <option value="Romance">Romance</option>
+        <option value="History">History</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Animation">Animation</option>
+        <option value="War">War</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Horror">Horror</option>
+        <option value="Western">Western</option>
+        <option value="Documentary">Documentary</option>
+      </select>
     </div>
+  </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-      <h1>My Movie Collection</h1>
+  <!-- Main Content -->
+  <main class="main-content">
+    <h1>My Movie Collection</h1>
+    <div id="movie-counter" class="movie-counter">Total Movies: <span id="movie-count">0</span></div>
+    <div id="movie-list" class="movie-list"></div>
+<div class="pagination">
+  <button id="prev-page" class="pagination-button">Previous</button>
+  <span id="page-info">Page 1 of 1</span>
+  <button id="next-page" class="pagination-button">Next</button>
+</div>
+  </main>
 
-      <!-- Search Bar and Genre Filter -->
-      <div class="search-filter">
-        <input type="text" id="search-bar" placeholder="Search movies..." />
-        <select id="filter-genre">
-          <option value="">All Genres</option>
-          <option value="Action">Action</option>
-          <option value="Drama">Drama</option>
-          <option value="Sci-Fi">Sci-Fi</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Crime">Crime</option>
-          <option value="Romance">Romance</option>
-          <option value="History">History</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Animation">Animation</option>
-          <option value="War">War</option>
-          <option value="Comedy">Comedy</option>
-          <option value="Mystery">Mystery</option>
-          <option value="Horror">Horror</option>
-          <option value="Western">Western</option>
-          <option value="Documentary">Documentary</option>
-          <!-- Add more genres as needed -->
-        </select>
-      </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy;  My Movie Collection. All rights reserved.</p>
+  </footer>
 
-      <!-- Movie Counter -->
-      <div id="movie-counter" class="movie-counter">Total Movies: <span id="movie-count">0</span></div>
-
-      <!-- Movie Grid -->
-      <div id="movie-list" class="movie-list"></div>
-    </div>
-  </div>
   <button id="back-to-top" class="back-to-top"> ↑ </button>
 
-  <script src="index.js"></script></body>
+  <script src="index.js"></script>
+</body>
 </html>
