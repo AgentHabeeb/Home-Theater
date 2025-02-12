@@ -1,8 +1,21 @@
+/* CSS Variables for Consistency */
+:root {
+  --primary-color: #e50914;
+  --primary-hover: #f40612;
+  --secondary-color: #333;
+  --secondary-hover: #555;
+  --background-color: #141414;
+  --card-background: #1f1f1f;
+  --text-color: #ddd;
+  --card-radius: 10px;
+  --transition: all 0.3s ease;
+}
+
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #141414;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
   padding: 20px;
 }
@@ -18,14 +31,33 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 36px;
-  color: #e50914;
+  color: var(--primary-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-p {
+p, .no-movies-placeholder {
   font-size: 18px;
+  color: var(--text-color);
+}
+
+p {
   line-height: 1.6;
-  color: #ddd;
+}
+
+.no-movies-placeholder {
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  background-color: transparent;
+  border-radius: var(--card-radius);
+}
+
+.no-movies-placeholder.watched {
+  color: var(--primary-color);
+}
+
+.no-movies-placeholder.search {
+  font-style: italic;
 }
 
 /* Movie Counter */
@@ -33,12 +65,11 @@ p {
   text-align: center;
   font-size: 18px;
   margin-bottom: 20px;
-  color: #ddd;
 }
 
 .movie-counter span {
   font-weight: bold;
-  color: #e50914;
+  color: var(--primary-color);
 }
 
 /* Search and Filter */
@@ -55,9 +86,9 @@ p {
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #1f1f1f;
-  color: white;
-  transition: box-shadow 0.3s ease;
+  background-color: var(--card-background);
+  color: var(--text-color);
+  transition: var(--transition);
 }
 
 #search-bar:focus,
@@ -78,10 +109,10 @@ p {
   width: 200px;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
   position: relative;
-  background-color: #1f1f1f;
-  border-radius: 10px;
+  background-color: var(--card-background);
+  border-radius: var(--card-radius);
   overflow: hidden;
 }
 
@@ -92,8 +123,8 @@ p {
 
 .movie-card img {
   width: 100%;
-  border-radius: 10px 10px 0 0;
-  transition: transform 0.3s ease;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  transition: var(--transition);
 }
 
 .movie-card:hover img {
@@ -103,7 +134,26 @@ p {
 .movie-card h3 {
   margin: 10px 0;
   font-size: 18px;
-  color: white;
+  color: var(--text-color);
+}
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+  background-color: var(--primary-color); /* Adjust to your theme */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: none; /* Initially hidden */
+}
+
+.back-to-top:hover {
+  background-color: var(--secondary-color); /* Adjust for hover effect */
 }
 
 /* Watched Button and Indicator */
@@ -112,14 +162,14 @@ p {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: #e50914;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: opacity 0.3s ease, background-color 0.3s ease;
+  transition: var(--transition);
 }
 
 .watched-button {
@@ -130,12 +180,8 @@ p {
   opacity: 1;
 }
 
-.watched-indicator {
-  opacity: 1; /* Always visible */
-}
-
 .watched-indicator:hover {
-  background-color: #f40612;
+  background-color: var(--primary-hover);
 }
 
 /* Movie Details Page */
@@ -145,8 +191,8 @@ p {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #1f1f1f;
-  border-radius: 15px;
+  background-color: var(--card-background);
+  border-radius: var(--card-radius);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -157,9 +203,9 @@ p {
 
 .poster-container img {
   width: 100%;
-  border-radius: 15px;
+  border-radius: var(--card-radius);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition);
 }
 
 .poster-container img:hover {
@@ -175,14 +221,8 @@ p {
   margin-top: 0;
   font-size: 36px;
   font-weight: bold;
-  color: #e50914;
+  color: var(--primary-color);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.info-container p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #ddd;
 }
 
 /* Buttons */
@@ -197,28 +237,28 @@ p {
   padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  color: white;
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: var(--transition);
 }
 
 #play-button {
-  background-color: #e50914;
+  background-color: var(--primary-color);
 }
 
 #play-button:hover {
-  background-color: #f40612;
+  background-color: var(--primary-hover);
   transform: translateY(-3px);
 }
 
 #back-button {
-  background-color: #333;
+  background-color: var(--secondary-color);
 }
 
 #back-button:hover {
-  background-color: #555;
+  background-color: var(--secondary-hover);
   transform: translateY(-3px);
 }
 
@@ -227,31 +267,31 @@ p {
   position: fixed;
   top: 20px;
   left: 20px;
-  background-color: #e50914;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   border: none;
   border-radius: 5px;
   padding: 10px;
   cursor: pointer;
   z-index: 1000;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .toggle-side-panel:hover {
-  background-color: #f40612;
+  background-color: var(--primary-hover);
   transform: scale(1.1);
 }
 
 .side-panel {
   width: 200px;
   margin-right: 20px;
-  transition: transform 0.3s ease;
+  transition: var(--transition);
   transform: translateX(-100%);
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
-  background-color: #1f1f1f;
+  background-color: var(--card-background);
   z-index: 999;
   padding: 20px;
   padding-top: 70px;
@@ -265,45 +305,26 @@ p {
 .side-panel-item {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #333;
+  background-color: var(--secondary-color);
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: var(--transition);
 }
 
 .side-panel-item:hover {
-  background-color: #444;
+  background-color: var(--secondary-hover);
   transform: translateX(10px);
 }
-/* Ensure the main content container doesn't shift */
+
+/* Main Content */
 .main-content {
   flex: 1;
-  margin-left: 0; /* No margin by default */
+  margin-left: 0;
   transition: margin-left 0.3s ease;
-  padding: 20px; /* Add padding to prevent content from touching edges */
-  background-color: #141414; /* Match the background color of the page */
-  border-radius: 15px; /* Optional: Add rounded corners */
-}
-/* Placeholder for empty movie list */
-.no-movies-placeholder {
-  text-align: center;
-  font-size: 18px;
-  color: #ddd;
-  width: 100%;
   padding: 20px;
-  background-color: transparent;
-  border-radius: 10px;
-  margin: 0;
+  border-radius: var(--card-radius);
 }
 
-/* Optional: Add specific styles for different placeholder messages */
-.no-movies-placeholder.watched {
-  color: #e50914; /* Red color for watched movies placeholder */
-}
-
-.no-movies-placeholder.search {
-  font-style: italic; /* Italicize search-related placeholders */
-}
 /* Animations */
 @keyframes fadeIn {
   from {
@@ -320,34 +341,31 @@ p {
   animation: fadeIn 0.5s ease;
 }
 
-/* watching page styles  */
-/* Watch Page Container */
+/* Watch Page Styles */
 .watch-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Full viewport height */
-  background-color: #141414; /* Match the background color */
+  min-height: 100vh;
+  background-color: var(--background-color);
   padding: 20px;
 }
 
-/* Video Player Container */
 .video-player-container {
   position: relative;
   width: 100%;
-  max-width: 800px; /* Limit the width for better focus */
+  max-width: 800px;
   margin: 0 auto;
 }
 
-/* Video Player */
 #my-video {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: var(--card-radius);
   box-shadow: 0 4px 15px rgba(229, 9, 20, 0.5);
 }
-/* Customize Video.js Progress Bar */
+
 .video-js .vjs-progress-control {
   flex: 1;
 }
@@ -357,20 +375,19 @@ p {
 }
 
 .video-js .vjs-play-progress {
-  background-color: #e50914; /* Red color for progress */
+  background-color: var(--primary-color);
 }
 
-/* Backdrop for Video Player */
 .video-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-  z-index: -1; /* Behind the video player */
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: -1;
 }
-/* Loading Spinner */
+
 .loading-spinner {
   position: absolute;
   top: 50%;
@@ -379,46 +396,27 @@ p {
   width: 50px;
   height: 50px;
   border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid #e50914;
+  border-top: 4px solid var(--primary-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   z-index: 10;
-  display: none; /* Hidden by default */
+  display: none;
 }
 
 @keyframes spin {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
-/* Overlay Indicator */
+
 .overlay-indicator {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  color: var(--text-color);
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 18px;
   z-index: 10;
 }
-/* Back Button */
-#back-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #333;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#back-button:hover {
-  background-color: #555;
-  transform: translateY(-3px);
-}
-

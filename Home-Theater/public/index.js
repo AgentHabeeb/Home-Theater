@@ -10,6 +10,25 @@ function updateMovieCounter(count) {
     movieCountElement.textContent = count;
   }
 }
+// back to top button
+
+document.addEventListener("DOMContentLoaded", function () {
+  const backToTopButton = document.getElementById("back-to-top");
+
+  // Show button when user scrolls down
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 200) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  });
+
+  // Scroll to top when button is clicked
+  backToTopButton.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
 
 // Toggle watched status of a movie
 function toggleWatchedMovie(movieId) {
