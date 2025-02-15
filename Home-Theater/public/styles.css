@@ -144,16 +144,16 @@ p {
   font-size: 16px;
   font-weight: bold;
   color: var(--text-color);
-  background-color: var(--primary-color); /* Adjust to your theme */
+  background-color: var(--primary-color); 
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: var(--transition);
-  display: none; /* Initially hidden */
+  display: none; 
 }
 
 .back-to-top:hover {
-  background-color: var(--secondary-color); /* Adjust for hover effect */
+  background-color: var(--secondary-color); 
 }
 
 /* Watched Button and Indicator */
