@@ -105,7 +105,6 @@ app.get('/api/movies/:id', (req, res) => {
 });
 
 // Start the server
-const localIP = '192.168.1.24'; 
-app.listen(port, localIP, () => {
-  console.log(`Server running at http://${localIP}:${port}`);
+app.listen(3000, 'localhost', () => {
+  console.log('Server running on http://localhost:3000');
 });
